@@ -1,6 +1,6 @@
-import 'package:act4_20220140140/homepage.dart';
-import 'package:act4_20220140140/daftarpage.dart';
 import 'package:flutter/material.dart';
+import 'package:ucp1flutter_20220140140/homepage.dart';
+import 'package:ucp1flutter_20220140140/registerpage.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -29,9 +29,18 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Text(
+                'SELAMAT DATANG KEMBALI',
+                style: TextStyle(fontSize: 28, color: const Color.fromARGB(255, 0, 0, 0)),
+              ),
+              SizedBox(height: 8),
               TextFormField(
                 controller: emailController,
-                decoration: const InputDecoration(labelText: 'Email'),
+                decoration: InputDecoration(
+                  labelText: 'Email',
+                  prefixIcon: Icon(Icons.email),
+                  border: OutlineInputBorder(),
+                ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your email';
@@ -39,9 +48,14 @@ class _LoginPageState extends State<LoginPage> {
                   return null;
                 },
               ),
+              SizedBox(height: 8),
               TextFormField(
                 controller: passwordController,
-                decoration: const InputDecoration(labelText: 'Password'),
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  prefixIcon: Icon(Icons.lock),
+                  border: OutlineInputBorder(),
+                ),
                 obscureText: true,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -50,7 +64,13 @@ class _LoginPageState extends State<LoginPage> {
                   return null;
                 },
               ),
+              SizedBox(height: 16),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(500, 50), 
+                  backgroundColor: const Color.fromARGB(255, 255, 119, 0), 
+                  foregroundColor: Colors.white, 
+                ),
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     Navigator.pushReplacement(
@@ -67,8 +87,8 @@ class _LoginPageState extends State<LoginPage> {
                     context, 
                     MaterialPageRoute(builder: (context) => RegisterPage()),
                   );
-              }, 
-              child: Text('Belum punya akun? Daftar'),
+                }, 
+                child: Text('Belum punya akun? Daftar'),
               ),
             ],
           ),
