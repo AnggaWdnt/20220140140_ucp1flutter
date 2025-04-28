@@ -21,7 +21,6 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Header
             Container(
               color: Colors.deepOrange,
               padding: EdgeInsets.all(16),
@@ -51,7 +50,6 @@ class _HomePageState extends State<HomePage> {
                   Spacer(),
                   IconButton(
                     onPressed: () {
-                      // Nanti bisa buat fungsi logout
                     },
                     icon: Icon(Icons.logout, color: Colors.white),
                   ),
@@ -61,7 +59,6 @@ class _HomePageState extends State<HomePage> {
 
             SizedBox(height: 20),
 
-            // Banner
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Container(
@@ -84,14 +81,12 @@ class _HomePageState extends State<HomePage> {
 
             SizedBox(height: 20),
 
-            // Menu Grid
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                 children: [
                   Row(
                     children: [
-                      // Tombol Data Piket
                       Expanded(
                         child: GestureDetector(
                           onTap: () {
@@ -121,7 +116,6 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
 
-                      // Tombol Data Pelanggan (Sudah diperbaiki!)
                       Expanded(
                         child: GestureDetector(
                           onTap: () {
@@ -156,10 +150,8 @@ class _HomePageState extends State<HomePage> {
 
                   SizedBox(height: 20),
 
-                  // Tombol Barang Masuk/Keluar
                   GestureDetector(
                     onTap: () {
-                      // Kalau ada halaman barang, isi di sini
                     },
                     child: Container(
                       width: double.infinity,
