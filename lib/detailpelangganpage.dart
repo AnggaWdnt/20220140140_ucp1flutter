@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class DetailPelangganPage extends StatelessWidget {
-
   final String nama;
   final String email;
   final String noHp;
@@ -21,9 +20,8 @@ class DetailPelangganPage extends StatelessWidget {
     required this.imageUrl,
   }) : super(key: key);
 
-  InputDecoration _inputDecoration(String label) {
+  InputDecoration _inputDecoration() {
     return InputDecoration(
-      labelText: label,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(20),
       ),
@@ -34,12 +32,11 @@ class DetailPelangganPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
         title: Text('Detail $nama'),
       ),
-    body: SingleChildScrollView(
+      body: SingleChildScrollView(
         padding: EdgeInsets.all(16),
         child: Column(
           children: [
@@ -48,46 +45,61 @@ class DetailPelangganPage extends StatelessWidget {
               backgroundImage: NetworkImage(imageUrl),
             ),
             SizedBox(height: 16),
-              Text(
+            Text(
               nama,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            ),
+            Text(email),
+            Text(noHp),
+            SizedBox(height: 24),
+
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text('Alamat', style: TextStyle(fontWeight: FontWeight.bold)),
             ),
             SizedBox(height: 8),
-            Text(
-              email,
-              style: TextStyle(fontSize: 16, color: Colors.grey[700]),
-            ),
-            Text(
-              noHp,
-              style: TextStyle(fontSize: 16, color: Colors.grey[700]),
-            ),
-            SizedBox(height: 24),
-            TextFormField(
-              initialValue: alamat,
+            TextField(
+              controller: TextEditingController(text: alamat),
               readOnly: true,
-              decoration: _inputDecoration('Alamat'),
+              decoration: _inputDecoration(),
             ),
             SizedBox(height: 16),
-                Row(
+
+            Row(
               children: [
                 Expanded(
-                  child: TextFormField(
-                    initialValue: provinsi,
-                    readOnly: true,
-                    decoration: _inputDecoration('Provinsi'),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Provinsi', style: TextStyle(fontWeight: FontWeight.bold)),
+                      SizedBox(height: 8),
+                      TextField(
+                        controller: TextEditingController(text: provinsi),
+                        readOnly: true,
+                        decoration: _inputDecoration(),
+                      ),
+                    ],
                   ),
                 ),
                 SizedBox(width: 12),
                 Expanded(
-                  child: TextFormField(
-                    initialValue: kodePos,
-                    readOnly: true,
-                    decoration: _inputDecoration('Kode Pos'),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Kode Pos', style: TextStyle(fontWeight: FontWeight.bold)),
+                      SizedBox(height: 8),
+                      TextField(
+                        controller: TextEditingController(text: kodePos),
+                        readOnly: true,
+                        decoration: _inputDecoration(),
+                      ),
+                    ],
                   ),
                 ),
               ],
             ),
             SizedBox(height: 30),
+
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -110,4 +122,3 @@ class DetailPelangganPage extends StatelessWidget {
     );
   }
 }
-  
