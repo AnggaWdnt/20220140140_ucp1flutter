@@ -68,6 +68,16 @@ class DetailPelangganPage extends StatelessWidget {
               decoration: _inputDecoration('Alamat'),
             ),
             SizedBox(height: 16),
+                Row(
+              children: [
+                Expanded(
+                  child: TextFormField(
+                    initialValue: provinsi,
+                    readOnly: true,
+                    decoration: _inputDecoration('Provinsi'),
+                  ),
+                ),
+                SizedBox(width: 12),
         )
     )
   
