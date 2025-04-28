@@ -160,3 +160,18 @@ Row(
     ),
   ],
 ),
+
+SizedBox(
+  width: double.infinity,
+  child: ElevatedButton(
+    onPressed: _submitData,
+    style: ElevatedButton.styleFrom(
+      backgroundColor: Colors.deepOrange,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      padding: EdgeInsets.symmetric(vertical: 16),
+    ),
+    child: Text('Submit', style: TextStyle(fontSize: 16)),
+  ),
+),
