@@ -39,3 +39,16 @@ class DetailPelangganPage extends StatelessWidget {
         backgroundColor: Colors.deepOrange,
         title: Text('Detail $nama'),
       ),
+    body: SingleChildScrollView(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          children: [
+            // Foto profil
+            CircleAvatar(
+              radius: 50,
+              backgroundImage: NetworkImage(imageUrl),
+            ),
+            SizedBox(height: 16),
+        )
+    )
+  
