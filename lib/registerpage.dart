@@ -39,20 +39,16 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   SizedBox(height: 32),
 
-              TextFormField(
-                controller: namaLengkapController,
-                decoration: InputDecoration(
-                  labelText: 'Nama Lengkap',
-                  prefixIcon: Icon(Icons.person),
-                  border: OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your name';
-                  }
-                  return null;
-                },
-              ),
+                               TextFormField(
+                    controller: namaLengkapController,
+                    decoration: InputDecoration(
+                      labelText: 'Nama Lengkap',
+                      prefixIcon: Icon(Icons.person),
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                    ),
+                    validator: (value) => value!.isEmpty ? 'Please enter your name' : null,
+                  ),
+                  SizedBox(height: 16),
               Row(
                 children: [
                   Expanded(
