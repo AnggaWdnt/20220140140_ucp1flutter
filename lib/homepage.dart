@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Header profile
+          
             Container(
               color: Colors.deepOrange,
               padding: EdgeInsets.all(16),
@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
             ),
 
             SizedBox(height: 20),
-             // Banner Promosi
+            
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Container(
@@ -78,10 +78,87 @@ class _HomePageState extends State<HomePage> {
 
             SizedBox(height: 20),
 
-              child: Text('Data Piket')
+            
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => OrderPage()),
+                            );
+                          },
+                          child: Container(
+                            padding: EdgeInsets.all(16),
+                            margin: EdgeInsets.only(right: 8),
+                            decoration: BoxDecoration(
+                              color: Colors.deepOrange,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Column(
+                              children: [
+                                Icon(Icons.task, size: 40, color: Colors.white),
+                                SizedBox(height: 8),
+                                Text('Data Piket', style: TextStyle(color: Colors.white, fontSize: 16)),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                          
+                          },
+                          child: Container(
+                            padding: EdgeInsets.all(16),
+                            margin: EdgeInsets.only(left: 8),
+                            decoration: BoxDecoration(
+                              color: Colors.deepOrange,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Column(
+                              children: [
+                                Icon(Icons.group_add, size: 40, color: Colors.white),
+                                SizedBox(height: 8),
+                                Text('Data Pelanggan', style: TextStyle(color: Colors.white, fontSize: 16)),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20),
+                  GestureDetector(
+                    onTap: () {
+                  
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        color: Colors.deepOrange,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Column(
+                        children: [
+                          Icon(Icons.receipt_long, size: 40, color: Colors.white),
+                          SizedBox(height: 8),
+                          Text('Barang Masuk/Keluar', style: TextStyle(color: Colors.white, fontSize: 16)),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
-          
         ),
       ),
     );
