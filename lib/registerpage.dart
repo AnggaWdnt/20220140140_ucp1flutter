@@ -110,22 +110,31 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   SizedBox(height: 32),
 
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  minimumSize: Size(500, 50), 
-                  backgroundColor: const Color.fromARGB(255, 255, 119, 0), 
-                  foregroundColor: Colors.white, 
-                ),
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    Navigator.pushReplacement(
-                      context, 
-                      MaterialPageRoute(builder: (context) => const LoginPage())
-                    );
-                  }
-                }, 
-                
-                child: Text('Register')),
+                               SizedBox(
+                    width: double.infinity,
+                    height: 50,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xFFFF5722),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                      ),
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => const LoginPage()),
+                          );
+                        }
+                      },
+                      child: Text(
+                        'Daftar',
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 16),
               TextButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/login');
