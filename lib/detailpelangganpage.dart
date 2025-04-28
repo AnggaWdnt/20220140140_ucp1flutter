@@ -78,6 +78,16 @@ class DetailPelangganPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(width: 12),
+                Expanded(
+                  child: TextFormField(
+                    initialValue: kodePos,
+                    readOnly: true,
+                    decoration: _inputDecoration('Kode Pos'),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 30),
         )
     )
   
