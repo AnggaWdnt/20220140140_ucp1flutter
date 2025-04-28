@@ -122,3 +122,41 @@ DropdownButtonFormField<String>(
   },
   validator: (value) => value == null || value.isEmpty ? 'Pilih jenis barang' : null,
 ),
+
+Row(
+  children: [
+    Expanded(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Jumlah Barang', style: TextStyle(fontWeight: FontWeight.bold)),
+          SizedBox(height: 8),
+          TextFormField(
+            controller: _jumlahController,
+            decoration: _inputDecoration('Jumlah Barang'),
+            keyboardType: TextInputType.number,
+            validator: (value) => value == null || value.isEmpty ? 'Jumlah wajib diisi' : null,
+          ),
+        ],
+      ),
+    ),
+    SizedBox(width: 12),
+    Expanded(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Harga Satuan', style: TextStyle(fontWeight: FontWeight.bold)),
+          SizedBox(height: 8),
+          TextFormField(
+            controller: _hargaController,
+            decoration: _inputDecoration('Harga Satuan').copyWith(
+              prefixText: 'Rp. ',
+            ),
+            keyboardType: TextInputType.number,
+            validator: (value) => value == null || value.isEmpty ? 'Harga wajib diisi' : null,
+          ),
+        ],
+      ),
+    ),
+  ],
+),
