@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ucp1flutter_20220140140/datapiketpage.dart'; // <- ganti importnya ke datapiketpage
+import 'package:ucp1flutter_20220140140/datapiketpage.dart'; 
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -83,7 +83,7 @@ class _HomePageState extends State<HomePage> {
                           onTap: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => DataPiketPage()), // <- Panggil DataPiketPage
+                              MaterialPageRoute(builder: (context) => DataPiketPage()), 
                             );
                           },
                           child: Container(
