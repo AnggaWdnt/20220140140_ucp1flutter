@@ -50,7 +50,7 @@ class _OrderPageState extends State<DataPiketPage
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Piket Gudang'),
+        title: Text('Data Piket'),
         backgroundColor: Colors.red,
       ),
       body: Padding(
