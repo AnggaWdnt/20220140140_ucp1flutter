@@ -29,3 +29,11 @@ Future<void> _selectDate(BuildContext context) async {
     });
   }
 }
+
+void _submitData() {
+  if (_formKey.currentState?.validate() ?? false) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Data Berhasil Disubmit')),
+    );
+  }
+}
