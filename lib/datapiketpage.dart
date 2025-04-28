@@ -92,3 +92,14 @@ class _OrderPageState extends State<OrderPage> {
                     ),
                   ),
                   SizedBox(width: 8),
+                    ElevatedButton(
+                    onPressed: _tambahData,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red,
+                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                    ),
+                    child: Text('Tambah'),
+                  ),
+                ],
+              ),
+              SizedBox(height: 24),
