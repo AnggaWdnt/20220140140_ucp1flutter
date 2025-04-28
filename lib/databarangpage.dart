@@ -37,3 +37,13 @@ void _submitData() {
     );
   }
 }
+
+InputDecoration _inputDecoration(String label) {
+  return InputDecoration(
+    labelText: label,
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(20),
+    ),
+    contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+  );
+}
