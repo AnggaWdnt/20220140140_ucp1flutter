@@ -20,3 +20,22 @@ class DetailPelangganPage extends StatelessWidget {
     required this.kodePos,
     required this.imageUrl,
   }) : super(key: key);
+
+  InputDecoration _inputDecoration(String label) {
+    return InputDecoration(
+      labelText: label,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+
+      appBar: AppBar(
+        backgroundColor: Colors.deepOrange,
+        title: Text('Detail $nama'),
+      ),
