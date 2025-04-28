@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ucp1flutter_20220140140/orderpage.dart'; 
+import 'package:ucp1flutter_20220140140/datapiketpage.dart'; // <- ganti importnya ke datapiketpage
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -20,7 +20,6 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-          
             Container(
               color: Colors.deepOrange,
               padding: EdgeInsets.all(16),
@@ -28,7 +27,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   CircleAvatar(
                     radius: 30,
-                    backgroundImage: AssetImage('assets/admin.png'), 
+                    backgroundImage: AssetImage('assets/admin.png'),
                   ),
                   SizedBox(width: 12),
                   Column(
@@ -46,16 +45,13 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Spacer(),
                   IconButton(
-                    onPressed: () {
-                    },
+                    onPressed: () {},
                     icon: Icon(Icons.logout, color: Colors.white),
                   ),
                 ],
               ),
             ),
-
             SizedBox(height: 20),
-            
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Container(
@@ -67,7 +63,7 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   children: [
                     Image.asset(
-                      'assets/banneriklan.jpg', 
+                      'assets/banneriklan.jpg',
                       fit: BoxFit.cover,
                     ),
                     SizedBox(height: 8),
@@ -75,10 +71,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-
             SizedBox(height: 20),
-
-            
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
@@ -90,7 +83,7 @@ class _HomePageState extends State<HomePage> {
                           onTap: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => OrderPage()),
+                              MaterialPageRoute(builder: (context) => DataPiketPage()), // <- Panggil DataPiketPage
                             );
                           },
                           child: Container(
@@ -112,9 +105,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Expanded(
                         child: GestureDetector(
-                          onTap: () {
-                          
-                          },
+                          onTap: () {},
                           child: Container(
                             padding: EdgeInsets.all(16),
                             margin: EdgeInsets.only(left: 8),
@@ -136,9 +127,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   SizedBox(height: 20),
                   GestureDetector(
-                    onTap: () {
-                  
-                    },
+                    onTap: () {},
                     child: Container(
                       width: double.infinity,
                       padding: EdgeInsets.all(20),
