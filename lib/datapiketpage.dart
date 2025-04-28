@@ -49,3 +49,19 @@ class _OrderPageState extends State<OrderPage> {
         title: Text('Piket Gudang'),
         backgroundColor: Colors.red,
       ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Nama Anggota'),
+              SizedBox(height: 8),
+              TextField(
+                controller: _namaController,
+                readOnly: true, // Biar tidak bisa diedit
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              SizedBox(height: 16),
