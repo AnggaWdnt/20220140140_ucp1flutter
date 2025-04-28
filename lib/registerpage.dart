@@ -28,14 +28,17 @@ class _RegisterPageState extends State<RegisterPage> {
         key: _formKey,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'BUAT AKUN BARU',
-                style: TextStyle(fontSize: 32, color: const Color.fromARGB(255, 0, 0, 0)),
-              ),
-              SizedBox(height: 8),
+          child:               Column(
+                children: [
+                  SizedBox(height: 24),
+                  Icon(Icons.arrow_drop_up, size: 100, color: Colors.black),
+                  SizedBox(height: 16),
+                  Text(
+                    'DAFTAR AKUN BARU',
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 32),
+
               TextFormField(
                 controller: namaLengkapController,
                 decoration: InputDecoration(
