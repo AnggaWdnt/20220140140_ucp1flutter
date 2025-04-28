@@ -65,3 +65,16 @@ class _OrderPageState extends State<OrderPage> {
                 ),
               ),
               SizedBox(height: 16),
+               Text('Pilih Tanggal'),
+              SizedBox(height: 8),
+              TextField(
+                controller: _tanggalController,
+                readOnly: true,
+                onTap: () => _selectDate(context),
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.calendar_today),
+                  hintText: 'Pilih Tanggal',
+                ),
+              ),
+              SizedBox(height: 16),
