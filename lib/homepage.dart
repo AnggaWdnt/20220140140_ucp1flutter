@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ucp1flutter_20220140140/datapiketpage.dart'; 
+import 'package:ucp1flutter_20220140140/datapiketpage.dart';
+import 'package:ucp1flutter_20220140140/datapelangganpage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -20,6 +21,7 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            // Header
             Container(
               color: Colors.deepOrange,
               padding: EdgeInsets.all(16),
@@ -39,19 +41,27 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Text(
                         'Admin',
-                        style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
                   Spacer(),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      // Nanti bisa buat fungsi logout
+                    },
                     icon: Icon(Icons.logout, color: Colors.white),
                   ),
                 ],
               ),
             ),
+
             SizedBox(height: 20),
+
+            // Banner
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Container(
@@ -71,19 +81,24 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
+
             SizedBox(height: 20),
+
+            // Menu Grid
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                 children: [
                   Row(
                     children: [
+                      // Tombol Data Piket
                       Expanded(
                         child: GestureDetector(
                           onTap: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => DataPiketPage()), 
+                              MaterialPageRoute(
+                                  builder: (context) => DataPiketPage()),
                             );
                           },
                           child: Container(
@@ -97,15 +112,25 @@ class _HomePageState extends State<HomePage> {
                               children: [
                                 Icon(Icons.task, size: 40, color: Colors.white),
                                 SizedBox(height: 8),
-                                Text('Data Piket', style: TextStyle(color: Colors.white, fontSize: 16)),
+                                Text('Data Piket',
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 16)),
                               ],
                             ),
                           ),
                         ),
                       ),
+
+                      // Tombol Data Pelanggan (Sudah diperbaiki!)
                       Expanded(
                         child: GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DataPelangganPage()),
+                            );
+                          },
                           child: Container(
                             padding: EdgeInsets.all(16),
                             margin: EdgeInsets.only(left: 8),
@@ -115,9 +140,12 @@ class _HomePageState extends State<HomePage> {
                             ),
                             child: Column(
                               children: [
-                                Icon(Icons.group_add, size: 40, color: Colors.white),
+                                Icon(Icons.group_add,
+                                    size: 40, color: Colors.white),
                                 SizedBox(height: 8),
-                                Text('Data Pelanggan', style: TextStyle(color: Colors.white, fontSize: 16)),
+                                Text('Data Pelanggan',
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 16)),
                               ],
                             ),
                           ),
@@ -125,9 +153,14 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ],
                   ),
+
                   SizedBox(height: 20),
+
+                  // Tombol Barang Masuk/Keluar
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      // Kalau ada halaman barang, isi di sini
+                    },
                     child: Container(
                       width: double.infinity,
                       padding: EdgeInsets.all(20),
@@ -137,9 +170,12 @@ class _HomePageState extends State<HomePage> {
                       ),
                       child: Column(
                         children: [
-                          Icon(Icons.receipt_long, size: 40, color: Colors.white),
+                          Icon(Icons.receipt_long,
+                              size: 40, color: Colors.white),
                           SizedBox(height: 8),
-                          Text('Barang Masuk/Keluar', style: TextStyle(color: Colors.white, fontSize: 16)),
+                          Text('Barang Masuk/Keluar',
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 16)),
                         ],
                       ),
                     ),
