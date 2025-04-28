@@ -49,43 +49,34 @@ class _RegisterPageState extends State<RegisterPage> {
                     validator: (value) => value!.isEmpty ? 'Please enter your name' : null,
                   ),
                   SizedBox(height: 16),
-              Row(
-                children: [
-                  Expanded(
-                    child: TextFormField(
-                      controller: noHpController,
-                      decoration: InputDecoration(
-                        labelText: 'Email',
-                        prefixIcon: Icon(Icons.email),
-                        border: OutlineInputBorder(),
+                               Row(
+                    children: [
+                      Expanded(
+                        child: TextFormField(
+                          controller: emailController,
+                          decoration: InputDecoration(
+                            labelText: 'Email',
+                            prefixIcon: Icon(Icons.email),
+                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                          ),
+                          validator: (value) => value!.isEmpty ? 'Masukkan email' : null,
+                        ),
                       ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your email';
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
-                  SizedBox(width: 16),
-                  Expanded(
-                    child: TextFormField(
-                      controller: emailController,
-                      decoration: InputDecoration(
-                        labelText: 'No HP',
-                        prefixIcon: Icon(Icons.phone),
-                        border: OutlineInputBorder(),
+                      SizedBox(width: 16),
+                      Expanded(
+                        child: TextFormField(
+                          controller: noHpController,
+                          decoration: InputDecoration(
+                            labelText: 'No HP',
+                            prefixIcon: Icon(Icons.phone),
+                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                          ),
+                          validator: (value) => value!.isEmpty ? 'Masukkan nomor HP' : null,
+                        ),
                       ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your number';
-                        }
-                        return null;
-                      },
-                    ),
+                    ],
                   ),
-                ],
-              ),
+                  SizedBox(height: 16),
               Row(
                 children: [
                   Expanded(
