@@ -59,7 +59,7 @@ class _OrderPageState extends State<OrderPage> {
               SizedBox(height: 8),
               TextField(
                 controller: _namaController,
-                readOnly: true, // Biar tidak bisa diedit
+                readOnly: true, 
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                 ),
@@ -78,3 +78,17 @@ class _OrderPageState extends State<OrderPage> {
                 ),
               ),
               SizedBox(height: 16),
+              Text('Tugas Piket'),
+              SizedBox(height: 8),
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: _tugasController,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: 'Tugas Piket',
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 8),
