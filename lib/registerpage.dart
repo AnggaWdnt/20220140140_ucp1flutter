@@ -135,12 +135,19 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                   SizedBox(height: 16),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/login');
-                }, 
-                child: Text('Sudah punya akun? Login Sekarang!'),
-              ),
+                                TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/login');
+                    },
+                    child: Text(
+                      'Sudah memiliki akun? Silahkan Login disini!',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
+
             ],
           ),
         ),
