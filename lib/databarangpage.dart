@@ -69,3 +69,39 @@ Widget build(BuildContext context) {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+
+Text('Tanggal Transaksi', style: TextStyle(fontWeight: FontWeight.bold)),
+SizedBox(height: 8),
+GestureDetector(
+  onTap: () => _selectDate(context),
+  child: AbsorbPointer(
+    child: TextFormField(
+      decoration: _inputDecoration('Tanggal Transaksi').copyWith(
+        prefixIcon: Icon(Icons.calendar_today),
+      ),
+      controller: TextEditingController(
+        text: _selectedDate == null
+            ? ''
+            : DateFormat('dd-MM-yyyy').format(_selectedDate!),
+      ),
+      validator: (value) => value == null || value.isEmpty ? 'Tanggal wajib diisi' : null,
+    ),
+  ),
+),
+
+DropdownButtonFormField<String>(
+  value: _jenisTransaksi,
+  decoration: _inputDecoration('Jenis Transaksi'),
+  items: ['Pembelian', 'Penjualan'].map((item) {
+    return DropdownMenuItem(
+      value: item,
+      child: Text(item),
+    );
+  }).toList(),
+  onChanged: (value) {
+    setState(() {
+      _jenisTransaksi = value;
+    });
+  },
+  validator: (value) => value == null || value.isEmpty ? 'Pilih jenis transaksi' : null,
+),
