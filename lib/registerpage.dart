@@ -46,7 +46,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       prefixIcon: Icon(Icons.person),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                     ),
-                    validator: (value) => value!.isEmpty ? 'Please enter your name' : null,
+                    validator: (value) => value!.isEmpty ? 'Masukan Nama Lengkap' : null,
                   ),
                   SizedBox(height: 16),
                                Row(
@@ -77,45 +77,39 @@ class _RegisterPageState extends State<RegisterPage> {
                     ],
                   ),
                   SizedBox(height: 16),
-              Row(
-                children: [
-                  Expanded(
-                    child: TextFormField(
-                      controller: passwordController,
-                      decoration: InputDecoration(
-                        labelText: 'Password',
-                        prefixIcon: Icon(Icons.lock),
-                        border: OutlineInputBorder(),
+                                Row(
+                    children: [
+                      Expanded(
+                        child: TextFormField(
+                          controller: passwordController,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            labelText: 'Password',
+                            prefixIcon: Icon(Icons.lock),
+                            suffixIcon: Icon(Icons.visibility_off),
+                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                          ),
+                          validator: (value) => value!.isEmpty ? 'Masukkan password' : null,
+                        ),
                       ),
-                      obscureText: true,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your password';
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
-                  SizedBox(width: 16),
-                  Expanded(
-                    child: TextFormField(
-                      controller: konfirmasiPasswordController,
-                      decoration: InputDecoration(
-                        labelText: 'Konfirmasi Password',
-                        prefixIcon: Icon(Icons.lock),
-                        border: OutlineInputBorder(),
+                      SizedBox(width: 16),
+                      Expanded(
+                        child: TextFormField(
+                          controller: konfirmasiPasswordController,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            labelText: 'Konfirmasi Password',
+                            prefixIcon: Icon(Icons.lock),
+                            suffixIcon: Icon(Icons.visibility_off),
+                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                          ),
+                          validator: (value) => value!.isEmpty ? 'Masukkan konfirmasi password' : null,
+                        ),
                       ),
-                      obscureText: true,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your password';
-                        }
-                        return null;
-                      },
-                    ),
+                    ],
                   ),
-                ],
-              ),
+                  SizedBox(height: 32),
+
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(500, 50), 
