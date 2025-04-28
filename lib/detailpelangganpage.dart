@@ -43,12 +43,25 @@ class DetailPelangganPage extends StatelessWidget {
         padding: EdgeInsets.all(16),
         child: Column(
           children: [
-            // Foto profil
             CircleAvatar(
               radius: 50,
               backgroundImage: NetworkImage(imageUrl),
             ),
             SizedBox(height: 16),
+              Text(
+              nama,
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 8),
+            Text(
+              email,
+              style: TextStyle(fontSize: 16, color: Colors.grey[700]),
+            ),
+            Text(
+              noHp,
+              style: TextStyle(fontSize: 16, color: Colors.grey[700]),
+            ),
+            SizedBox(height: 24),
         )
     )
   
