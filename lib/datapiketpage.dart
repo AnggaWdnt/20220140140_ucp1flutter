@@ -103,3 +103,36 @@ class _OrderPageState extends State<OrderPage> {
                 ],
               ),
               SizedBox(height: 24),
+               Text(
+                'Daftar Tugas Piket',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              ),
+              SizedBox(height: 8),
+              dataPiket.isEmpty
+                  ? Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 50),
+                        child: Text('Belum ada Data'),
+                      ),
+                    )
+                  : ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: dataPiket.length,
+                      itemBuilder: (context, index) {
+                        final item = dataPiket[index];
+                        return Card(
+                          child: ListTile(
+                            title: Text(item['tugas'] ?? ''),
+                            subtitle: Text('${item['nama']} - ${item['tanggal']}'),
+                          ),
+                        );
+                      },
+                    ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
