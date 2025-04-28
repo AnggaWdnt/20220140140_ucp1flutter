@@ -62,6 +62,12 @@ class DetailPelangganPage extends StatelessWidget {
               style: TextStyle(fontSize: 16, color: Colors.grey[700]),
             ),
             SizedBox(height: 24),
+            TextFormField(
+              initialValue: alamat,
+              readOnly: true,
+              decoration: _inputDecoration('Alamat'),
+            ),
+            SizedBox(height: 16),
         )
     )
   
