@@ -47,3 +47,25 @@ InputDecoration _inputDecoration(String label) {
     contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
   );
 }
+
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(
+      backgroundColor: Colors.deepOrange,
+      title: Text('Pendataan Barang'),
+      leading: IconButton(
+        icon: Icon(Icons.arrow_back),
+        onPressed: () {
+          Navigator.pop(context);
+        },
+      ),
+    ),
+
+    body: SingleChildScrollView(
+      padding: EdgeInsets.all(16),
+      child: Form(
+        key: _formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
