@@ -105,3 +105,20 @@ DropdownButtonFormField<String>(
   },
   validator: (value) => value == null || value.isEmpty ? 'Pilih jenis transaksi' : null,
 ),
+
+DropdownButtonFormField<String>(
+  value: _jenisBarang,
+  decoration: _inputDecoration('Jenis Barang'),
+  items: ['Carrier', 'Sleeping Bag', 'Tenda', 'Sepatu'].map((item) {
+    return DropdownMenuItem(
+      value: item,
+      child: Text(item),
+    );
+  }).toList(),
+  onChanged: (value) {
+    setState(() {
+      _jenisBarang = value;
+    });
+  },
+  validator: (value) => value == null || value.isEmpty ? 'Pilih jenis barang' : null,
+),
