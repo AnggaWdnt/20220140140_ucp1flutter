@@ -55,6 +55,28 @@ class _HomePageState extends State<HomePage> {
             ),
 
             SizedBox(height: 20),
+             // Banner Promosi
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.red[100],
+                ),
+                child: Column(
+                  children: [
+                    Image.asset(
+                      'assets/banneriklan.jpg', 
+                      fit: BoxFit.cover,
+                    ),
+                    SizedBox(height: 8),
+                  ],
+                ),
+              ),
+            ),
+
+            SizedBox(height: 20),
 
               child: Text('Data Piket')
             ),
