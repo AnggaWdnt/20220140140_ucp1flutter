@@ -1,5 +1,5 @@
-import 'package:ucp1flutter_20220140140/orderpage.dart';
 import 'package:flutter/material.dart';
+import 'package:ucp1flutter_20220140140/orderpage.dart'; 
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,19 +12,50 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Home Page')),
-      body: Center(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.deepOrange,
+        title: Text('Home Page'),
+      ),
+      body: SingleChildScrollView(
         child: Column(
-          spacing: 8,
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Selamat datang di Home Page!'),
-            ElevatedButton(onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const OrderPage()), 
-              );
-            }, 
+            // Header profile
+            Container(
+              color: Colors.deepOrange,
+              padding: EdgeInsets.all(16),
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    radius: 30,
+                    backgroundImage: AssetImage('assets/admin.png'), // Gambar admin, sesuaikan path
+                  ),
+                  SizedBox(width: 12),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Selamat Datang',
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+                      Text(
+                        'Admin',
+                        style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  Spacer(),
+                  IconButton(
+                    onPressed: () {
+                    },
+                    icon: Icon(Icons.logout, color: Colors.white),
+                  ),
+                ],
+              ),
+            ),
+
+            SizedBox(height: 20),
+
               child: Text('Data Piket')
             ),
           ],
