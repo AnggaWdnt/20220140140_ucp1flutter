@@ -34,6 +34,10 @@ class _LoginPageState extends State<LoginPage> {
                 style: TextStyle(fontSize: 28, color: const Color.fromARGB(255, 0, 0, 0)),
               ),
               SizedBox(height: 8),
+              Text(
+                'Masukkan alamat email yang valid',
+                style: TextStyle(fontSize: 12, color: const Color.fromARGB(255, 128, 128, 128)),
+              ),
               TextFormField(
                 controller: emailController,
                 decoration: InputDecoration(
@@ -49,6 +53,10 @@ class _LoginPageState extends State<LoginPage> {
                 },
               ),
               SizedBox(height: 8),
+              Text(
+                'Masukkan password yang kuat',
+                style: TextStyle(fontSize: 12, color: const Color.fromARGB(255, 128, 128, 128)),
+              ),
               TextFormField(
                 controller: passwordController,
                 decoration: InputDecoration(
