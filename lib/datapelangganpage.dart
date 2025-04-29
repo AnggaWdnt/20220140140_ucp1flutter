@@ -30,7 +30,7 @@ class _DataPelangganPageState extends State<DataPelangganPage> {
           alamat: _alamatController.text,
           provinsi: _provinsiController.text,
           kodePos: _kodePosController.text,
-          imageUrl: 'https://i.pinimg.com/564x/18/61/41/186141987cb6d4792e4c24f456a0c08d.jpg', 
+          imageUrl: 'assets/images/cat.jpg', 
         ),
       ),
     );
