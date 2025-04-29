@@ -2,21 +2,17 @@ import 'package:ucp1flutter_20220140140/homepage.dart';
 import 'package:flutter/material.dart';
 
 class DetailOrderPage extends StatelessWidget {
-  final String makanan;
-  final String minuman;
-  final String jumlahMakanan;
-  final String jumlahMinuman;
-  final int totalHarga;
+  final String Namanggota;
+  final String Tanggalpiket;
+  final String Tugaspiket;
   final String namaLengkap;
   final String email;
 
   const DetailOrderPage({
     super.key,
-    required this.makanan,
-    required this.minuman,
-    required this.jumlahMakanan,
-    required this.jumlahMinuman,
-    required this.totalHarga,
+    required this.Namanggota,
+    required this.Tanggalpiket,
+    required this.Tugaspiket,
     required this.namaLengkap,
     required this.email,
   });
@@ -30,9 +26,9 @@ class DetailOrderPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Nama Anggota: $makanan'),
-            Text('Tanggal Piket: $minuman'),
-            Text('Tugas Piket: $jumlahMakanan'),
+            Text('Nama Anggota: $Namanggota'),
+            Text('Tanggal Piket: $Tanggalpiket'),
+            Text('Tugas Piket: $Tugaspiket'),
             const SizedBox(height: 20),
             SizedBox(
               width: double.infinity,
