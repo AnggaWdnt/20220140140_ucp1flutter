@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:ucp1flutter_20220140140/detaildatapiketpage.dart';
 
-class DataPiketPage
- extends StatefulWidget {
-  const DataPiketPage
-({super.key});
+class DataPiketPage extends StatefulWidget {
+  const DataPiketPage({super.key});
 
   @override
-  State<DataPiketPage
-> createState() => _OrderPageState();
+  State<DataPiketPage> createState() => _OrderPageState();
 }
 
-class _OrderPageState extends State<DataPiketPage
-> {
-  final TextEditingController _namaController = TextEditingController(text: "Admin");
+class _OrderPageState extends State<DataPiketPage> {
+  final TextEditingController _namaController =
+      TextEditingController(text: "Admin");
   final TextEditingController _tanggalController = TextEditingController();
   final TextEditingController _tugasController = TextEditingController();
   List<Map<String, String>> dataPiket = [];
@@ -20,13 +18,14 @@ class _OrderPageState extends State<DataPiketPage
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: DateTime.now(), 
-      firstDate: DateTime(2000), 
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
       lastDate: DateTime(2100),
     );
     if (picked != null) {
       setState(() {
-        _tanggalController.text = "${picked.day}/${picked.month}/${picked.year}";
+        _tanggalController.text =
+            "${picked.day}/${picked.month}/${picked.year}";
       });
     }
   }
@@ -41,7 +40,7 @@ class _OrderPageState extends State<DataPiketPage
           'tanggal': _tanggalController.text,
           'tugas': _tugasController.text,
         });
-        _tugasController.clear(); 
+        _tugasController.clear();
       });
     }
   }
@@ -63,13 +62,13 @@ class _OrderPageState extends State<DataPiketPage
               SizedBox(height: 8),
               TextField(
                 controller: _namaController,
-                readOnly: true, 
+                readOnly: true,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                 ),
               ),
               SizedBox(height: 16),
-               Text('Pilih Tanggal'),
+              Text('Pilih Tanggal'),
               SizedBox(height: 8),
               TextField(
                 controller: _tanggalController,
@@ -96,18 +95,19 @@ class _OrderPageState extends State<DataPiketPage
                     ),
                   ),
                   SizedBox(width: 8),
-                    ElevatedButton(
+                  ElevatedButton(
                     onPressed: _tambahData,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red,
-                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                     ),
                     child: Text('Tambah'),
                   ),
                 ],
               ),
               SizedBox(height: 24),
-               Text(
+              Text(
                 'Daftar Tugas Piket',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
@@ -128,7 +128,21 @@ class _OrderPageState extends State<DataPiketPage
                         return Card(
                           child: ListTile(
                             title: Text(item['tugas'] ?? ''),
-                            subtitle: Text('${item['nama']} - ${item['tanggal']}'),
+                            subtitle: Text(
+                                '${item['nama']} - ${item['tanggal']}'),
+                            trailing: Icon(Icons.arrow_forward_ios),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => DetailDataPiketPage(
+                                    nama: item['nama'] ?? '',
+                                    tanggal: item['tanggal'] ?? '',
+                                    tugas: item['tugas'] ?? '',
+                                  ),
+                                ),
+                              );
+                            },
                           ),
                         );
                       },
