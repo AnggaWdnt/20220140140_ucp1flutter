@@ -57,7 +57,7 @@ class _DataPiketPageState extends State<DataPiketPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Data Piket'),
-        backgroundColor: Colors.red,
+        backgroundColor: const Color.fromARGB(255, 50, 88, 255),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -105,11 +105,18 @@ class _DataPiketPageState extends State<DataPiketPage> {
                   ElevatedButton(
                     onPressed: _tambahData,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.red,
+                      backgroundColor: const Color.fromARGB(255, 50, 88, 255),
                       padding:
                           EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                     ),
-                    child: Text('Tambah'),
+                       child: const Text(
+                       'Tambah',
+                      style: TextStyle(
+                       fontSize: 18,
+                       fontWeight: FontWeight.bold,
+                       color: Colors.white, 
+                     ),
+                    ),
                   ),
                 ],
               ),

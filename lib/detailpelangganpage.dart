@@ -33,7 +33,7 @@ class DetailPelangganPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.deepOrange,
+        backgroundColor: const Color.fromARGB(255, 50, 88, 255),
         title: Text('Detail $nama'),
       ),
       body: SingleChildScrollView(
@@ -107,14 +107,21 @@ class DetailPelangganPage extends StatelessWidget {
                   Navigator.pop(context);
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.deepOrange,
+                  backgroundColor: const Color.fromARGB(255, 50, 88, 255),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
                   padding: EdgeInsets.symmetric(vertical: 16),
                 ),
-                child: Text('Selesai', style: TextStyle(fontSize: 16)),
-              ),
+                   child: const Text(
+                       'Selesai',
+                      style: TextStyle(
+                       fontSize: 18,
+                       fontWeight: FontWeight.bold,
+                       color: Colors.white, 
+                     ),
+                    ),
+                  ),
             ),
           ],
         ),

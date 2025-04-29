@@ -21,11 +21,10 @@ class DetailOrderPage extends StatelessWidget {
     required this.email,
   });
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Detail Data Piket')),
+      appBar: AppBar(title: const Text('Detail Data Piket')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -35,22 +34,37 @@ class DetailOrderPage extends StatelessWidget {
             Text('Tanggal Piket: $minuman'),
             Text('Tugas Piket: $jumlahMakanan'),
             const SizedBox(height: 20),
-            ElevatedButton(
-  onPressed: () {
-    Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(
-        builder: (context) => HomePage(
-          namaLengkap: namaLengkap,
-          email: email,
-        ),
-      ),
-      (route) => false,
-    );
-  },
-  child: Text('Selesai'),
-),
-
+            SizedBox(
+              width: double.infinity,
+              height: 48,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HomePage(
+                        namaLengkap: namaLengkap,
+                        email: email,
+                      ),
+                    ),
+                    (route) => false,
+                  );
+                },
+                child: const Text(
+                  'Selesai',
+                  style: TextStyle(
+                    color: Colors.white, 
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),

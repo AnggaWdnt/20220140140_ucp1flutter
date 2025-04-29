@@ -13,61 +13,61 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   bool _obscureText = true;
-  final _formKey = GlobalKey<FormState>(); // Dipindah ke atas agar tidak rebuild terus
+  final _formKey = GlobalKey<FormState>();
+
+  final Color primaryColor = const Color.fromARGB(255, 50, 88, 255);
+  final Color backgroundColor = Colors.grey.shade100;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFEF9F7),
+      backgroundColor: backgroundColor,
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 60),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 80),
-                Icon(
-                  Icons.change_history,
-                  size: 100,
-                  color: Colors.black,
-                ),
-                const SizedBox(height: 20),
-                Text(
-                  'SELAMAT DATANG KEMBALI',
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black87,
+                Center(
+                  child: Icon(
+                    Icons.lock_outline,
+                    size: 80,
+                    color: primaryColor,
                   ),
                 ),
-                const SizedBox(height: 40),
-                Align(
-                  alignment: Alignment.centerLeft,
+                const SizedBox(height: 20),
+                Center(
                   child: Text(
-                    'Email',
+                    'Selamat Datang Kembali',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 20,
                       fontWeight: FontWeight.w600,
                       color: Colors.black87,
                     ),
+                  ),
+                ),
+                const SizedBox(height: 40),
+                Text(
+                  'Email',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
                 const SizedBox(height: 8),
                 TextFormField(
                   controller: emailController,
                   decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.email, color: Colors.brown),
-                    hintText: 'Email',
+                    prefixIcon: Icon(Icons.email_outlined, color: primaryColor),
+                    hintText: 'Masukkan email',
                     filled: true,
                     fillColor: Colors.white,
-                    contentPadding: EdgeInsets.symmetric(vertical: 20),
+                    contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 16),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(color: Colors.grey),
+                      borderSide: BorderSide.none,
                     ),
                   ),
                   validator: (value) {
@@ -78,15 +78,11 @@ class _LoginPageState extends State<LoginPage> {
                   },
                 ),
                 const SizedBox(height: 20),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Password',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black87,
-                    ),
+                Text(
+                  'Password',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -94,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                   controller: passwordController,
                   obscureText: _obscureText,
                   decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.lock, color: Colors.brown),
+                    prefixIcon: Icon(Icons.lock_outline, color: primaryColor),
                     suffixIcon: IconButton(
                       icon: Icon(
                         _obscureText ? Icons.visibility_off : Icons.visibility,
@@ -106,16 +102,13 @@ class _LoginPageState extends State<LoginPage> {
                         });
                       },
                     ),
-                    hintText: 'Password',
+                    hintText: 'Masukkan password',
                     filled: true,
                     fillColor: Colors.white,
-                    contentPadding: EdgeInsets.symmetric(vertical: 20),
+                    contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 16),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(color: Colors.grey),
+                      borderSide: BorderSide.none,
                     ),
                   ),
                   validator: (value) {
@@ -128,13 +121,14 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 40),
                 SizedBox(
                   width: double.infinity,
-                  height: 55,
+                  height: 50,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFFFF3D00),
+                      backgroundColor: primaryColor,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18),
+                        borderRadius: BorderRadius.circular(12),
                       ),
+                      elevation: 1,
                     ),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
@@ -142,15 +136,20 @@ class _LoginPageState extends State<LoginPage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => HomePage(
-                              namaLengkap: "User", // <-- Disini kasih nama default
+                              namaLengkap: "User", // Nanti diganti jika nama tersedia
+                              email: emailController.text,
                             ),
                           ),
                         );
                       }
                     },
-                    child: Text(
+                    child: const Text(
                       'Masuk',
-                      style: TextStyle(fontSize: 18),
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white, // <-- Warna teks putih
+                      ),
                     ),
                   ),
                 ),
@@ -159,7 +158,7 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Belum memiliki akun? ",
+                      "Belum punya akun? ",
                       style: TextStyle(color: Colors.black87),
                     ),
                     GestureDetector(
@@ -170,9 +169,9 @@ class _LoginPageState extends State<LoginPage> {
                         );
                       },
                       child: Text(
-                        "Daftar disini!",
+                        "Daftar",
                         style: TextStyle(
-                          color: Colors.redAccent,
+                          color: primaryColor,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

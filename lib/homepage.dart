@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.deepOrange,
+        backgroundColor: const Color.fromARGB(255, 50, 88, 255),
         title: Text('Home Page'),
         actions: [
           IconButton(
@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: [
             Container(
-              color: Colors.deepOrange,
+              color: const Color.fromARGB(254, 50, 88, 255),
               padding: EdgeInsets.all(16),
               child: Row(
                 children: [
@@ -118,7 +118,7 @@ class _HomePageState extends State<HomePage> {
                             padding: EdgeInsets.all(16),
                             margin: EdgeInsets.only(right: 8),
                             decoration: BoxDecoration(
-                              color: Colors.deepOrange,
+                              color: const Color.fromARGB(255, 50, 88, 255),
                               borderRadius: BorderRadius.circular(20),
                             ),
                             child: Column(
@@ -147,7 +147,7 @@ class _HomePageState extends State<HomePage> {
                             padding: EdgeInsets.all(16),
                             margin: EdgeInsets.only(left: 8),
                             decoration: BoxDecoration(
-                              color: Colors.deepOrange,
+                              color: const Color.fromARGB(255, 50, 88, 255),
                               borderRadius: BorderRadius.circular(20),
                             ),
                             child: Column(
@@ -180,7 +180,7 @@ class _HomePageState extends State<HomePage> {
                       width: double.infinity,
                       padding: EdgeInsets.all(20),
                       decoration: BoxDecoration(
-                        color: Colors.deepOrange,
+                        color: const Color.fromARGB(255, 50, 88, 255),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Column(

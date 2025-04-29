@@ -63,7 +63,7 @@ void _resetForm() {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.deepOrange,
+        backgroundColor: const Color.fromARGB(255, 50, 88, 255),
         title: Text('Data Pelanggan'),
       ),
       body: SingleChildScrollView(
@@ -133,14 +133,21 @@ void _resetForm() {
                 child: ElevatedButton(
                   onPressed: _simpanData,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.deepOrange,
+                    backgroundColor: const Color.fromARGB(255, 50, 88, 255),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
                     padding: EdgeInsets.symmetric(vertical: 16),
                   ),
-                  child: Text('Simpan', style: TextStyle(fontSize: 16)),
-                ),
+                     child: const Text(
+                       'Simpan',
+                      style: TextStyle(
+                       fontSize: 18,
+                       fontWeight: FontWeight.bold,
+                       color: Colors.white, 
+                     ),
+                    ),
+                  ),
               ),
               SizedBox(height: 16),
 
@@ -149,8 +156,8 @@ void _resetForm() {
                 child: OutlinedButton(
                   onPressed: _resetForm,
                   style: OutlinedButton.styleFrom(
-                    foregroundColor: Colors.deepOrange,
-                    side: BorderSide(color: Colors.deepOrange),
+                    foregroundColor: const Color.fromARGB(255, 50, 88, 255),
+                    side: BorderSide(color: const Color.fromARGB(255, 50, 88, 255)),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),

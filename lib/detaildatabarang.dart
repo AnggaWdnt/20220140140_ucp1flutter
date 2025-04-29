@@ -49,20 +49,27 @@ class DetailBarangPage extends StatelessWidget {
             SizedBox(height: 40),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.redAccent,
+                backgroundColor: const Color.fromARGB(255, 50, 88, 255),
                 minimumSize: Size(300, 50),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
               ),
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text('Selesai', style: TextStyle(fontSize: 18)),
-            )
-          ],
-        ),
-      ),
-    );
-  }
+                 child: const Text(
+                       'Selesai',
+                      style: TextStyle(
+                       fontSize: 18,
+                       fontWeight: FontWeight.bold,
+                       color: Colors.white, 
+                     ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        }
 
   Widget detailRow(String title, String value) {
     return Padding(

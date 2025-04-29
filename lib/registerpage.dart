@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ucp1flutter_20220140140/loginpage.dart';
-import 'package:ucp1flutter_20220140140/homepage.dart'; 
+import 'package:ucp1flutter_20220140140/homepage.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -20,6 +20,7 @@ class _RegisterPageState extends State<RegisterPage> {
   bool _obscureConfirmPassword = true;
 
   final _formKey = GlobalKey<FormState>();
+  final Color primaryColor = Color.fromARGB(255, 50, 88, 255);
 
   @override
   Widget build(BuildContext context) {
@@ -28,27 +29,35 @@ class _RegisterPageState extends State<RegisterPage> {
         key: _formKey,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
+          child: ListView(
             children: [
-              SizedBox(height: 24),
-              Icon(Icons.arrow_drop_up, size: 100, color: Colors.black),
-              SizedBox(height: 16),
-              Text(
-                'DAFTAR AKUN BARU',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              const SizedBox(height: 48),
+              Center(
+                child: Icon(
+                  Icons.lock_outline,
+                  size: 80,
+                  color: primaryColor,
+                ),
               ),
-              SizedBox(height: 32),
+              const SizedBox(height: 16),
+              const Center(
+                child: Text(
+                  'DAFTAR AKUN BARU',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+              ),
+              const SizedBox(height: 32),
 
               TextFormField(
                 controller: namaLengkapController,
                 decoration: InputDecoration(
                   labelText: 'Nama Lengkap',
-                  prefixIcon: Icon(Icons.person),
+                  prefixIcon: Icon(Icons.person, color: primaryColor),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                 ),
                 validator: (value) => value!.isEmpty ? 'Masukkan Nama Lengkap' : null,
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
 
               Row(
                 children: [
@@ -57,19 +66,19 @@ class _RegisterPageState extends State<RegisterPage> {
                       controller: emailController,
                       decoration: InputDecoration(
                         labelText: 'Email',
-                        prefixIcon: Icon(Icons.email),
+                        prefixIcon: Icon(Icons.email, color: primaryColor),
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                       ),
                       validator: (value) => value!.isEmpty ? 'Masukkan Email' : null,
                     ),
                   ),
-                  SizedBox(width: 16),
+                  const SizedBox(width: 16),
                   Expanded(
                     child: TextFormField(
                       controller: noHpController,
                       decoration: InputDecoration(
                         labelText: 'No HP',
-                        prefixIcon: Icon(Icons.phone),
+                        prefixIcon: Icon(Icons.phone, color: primaryColor),
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                       ),
                       validator: (value) => value!.isEmpty ? 'Masukkan Nomor HP' : null,
@@ -77,7 +86,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ],
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
 
               Row(
                 children: [
@@ -87,7 +96,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       obscureText: _obscurePassword,
                       decoration: InputDecoration(
                         labelText: 'Password',
-                        prefixIcon: Icon(Icons.lock),
+                        prefixIcon: Icon(Icons.lock, color: primaryColor),
                         suffixIcon: IconButton(
                           icon: Icon(
                             _obscurePassword ? Icons.visibility_off : Icons.visibility,
@@ -103,14 +112,14 @@ class _RegisterPageState extends State<RegisterPage> {
                       validator: (value) => value!.isEmpty ? 'Masukkan Password' : null,
                     ),
                   ),
-                  SizedBox(width: 16),
+                  const SizedBox(width: 16),
                   Expanded(
                     child: TextFormField(
                       controller: konfirmasiPasswordController,
                       obscureText: _obscureConfirmPassword,
                       decoration: InputDecoration(
                         labelText: 'Konfirmasi Password',
-                        prefixIcon: Icon(Icons.lock),
+                        prefixIcon: Icon(Icons.lock, color: primaryColor),
                         suffixIcon: IconButton(
                           icon: Icon(
                             _obscureConfirmPassword ? Icons.visibility_off : Icons.visibility,
@@ -136,14 +145,14 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ],
               ),
-              SizedBox(height: 32),
+              const SizedBox(height: 32),
 
               SizedBox(
                 width: double.infinity,
                 height: 50,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFFFF5722),
+                    backgroundColor: primaryColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
@@ -154,29 +163,34 @@ class _RegisterPageState extends State<RegisterPage> {
                         context,
                         MaterialPageRoute(
                           builder: (context) => HomePage(
-                            namaLengkap: namaLengkapController.text, 
+                            namaLengkap: namaLengkapController.text,
                             email: emailController.text,
                           ),
                         ),
                       );
                     }
                   },
-                  child: Text(
-                    'Daftar',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      child: const Text(
+                       'Daftar',
+                      style: TextStyle(
+                       fontSize: 18,
+                       fontWeight: FontWeight.bold,
+                       color: Colors.white, 
+                     ),
+                    ),
                   ),
-                ),
-              ),
-              SizedBox(height: 16),
+                 ),
+
+              const SizedBox(height: 16),
 
               TextButton(
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => LoginPage()), 
+                    MaterialPageRoute(builder: (context) => const LoginPage()),
                   );
                 },
-                child: Text(
+                child: const Text(
                   'Sudah memiliki akun? Silahkan Login disini!',
                   style: TextStyle(
                     color: Colors.black,

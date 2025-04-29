@@ -89,7 +89,7 @@ class _DataBarangPageState extends State<DataBarangPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.deepOrange,
+        backgroundColor: const Color.fromARGB(255, 50, 88, 255),
         title: const Text('Pendataan Barang'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
