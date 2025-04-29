@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ucp1flutter_20220140140/loginpage.dart';
+import 'package:ucp1flutter_20220140140/homepage.dart'; 
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -151,7 +152,11 @@ class _RegisterPageState extends State<RegisterPage> {
                     if (_formKey.currentState!.validate()) {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => const LoginPage()),
+                        MaterialPageRoute(
+                          builder: (context) => HomePage(
+                            namaLengkap: namaLengkapController.text, 
+                          ),
+                        ),
                       );
                     }
                   },
@@ -165,7 +170,10 @@ class _RegisterPageState extends State<RegisterPage> {
 
               TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/login');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginPage()), 
+                  );
                 },
                 child: Text(
                   'Sudah memiliki akun? Silahkan Login disini!',
