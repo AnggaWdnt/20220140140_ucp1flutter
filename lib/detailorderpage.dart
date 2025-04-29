@@ -7,6 +7,8 @@ class DetailOrderPage extends StatelessWidget {
   final String jumlahMakanan;
   final String jumlahMinuman;
   final int totalHarga;
+  final String namaLengkap;
+  final String email;
 
   const DetailOrderPage({
     super.key,
@@ -15,7 +17,10 @@ class DetailOrderPage extends StatelessWidget {
     required this.jumlahMakanan,
     required this.jumlahMinuman,
     required this.totalHarga,
+    required this.namaLengkap,
+    required this.email,
   });
+
 
   @override
   Widget build(BuildContext context) {
@@ -31,19 +36,21 @@ class DetailOrderPage extends StatelessWidget {
             Text('Tugas Piket: $jumlahMakanan'),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => HomePage(
-                      namaLengkap: 'User', 
-                    ),
-                  ),
-                  (route) => false,
-                );
-              },
-              child: Text('Selesai'),
-            ),
+  onPressed: () {
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(
+        builder: (context) => HomePage(
+          namaLengkap: namaLengkap,
+          email: email,
+        ),
+      ),
+      (route) => false,
+    );
+  },
+  child: Text('Selesai'),
+),
+
           ],
         ),
       ),

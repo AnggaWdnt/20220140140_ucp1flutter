@@ -155,6 +155,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         MaterialPageRoute(
                           builder: (context) => HomePage(
                             namaLengkap: namaLengkapController.text, 
+                            email: emailController.text,
                           ),
                         ),
                       );
