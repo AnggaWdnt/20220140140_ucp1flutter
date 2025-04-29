@@ -11,6 +11,7 @@ class DataPiketPage extends StatefulWidget {
 }
 
 class _DataPiketPageState extends State<DataPiketPage> {
+  final _formKey = GlobalKey<FormState>();
   late TextEditingController _namaController;
   final TextEditingController _tanggalController = TextEditingController();
   final TextEditingController _tugasController = TextEditingController();
@@ -31,16 +32,13 @@ class _DataPiketPageState extends State<DataPiketPage> {
     );
     if (picked != null) {
       setState(() {
-        _tanggalController.text =
-            "${picked.day}/${picked.month}/${picked.year}";
+        _tanggalController.text = "${picked.day}/${picked.month}/${picked.year}";
       });
     }
   }
 
   void _tambahData() {
-    if (_namaController.text.isNotEmpty &&
-        _tanggalController.text.isNotEmpty &&
-        _tugasController.text.isNotEmpty) {
+    if (_formKey.currentState?.validate() ?? false) {
       setState(() {
         dataPiket.add({
           'nama': _namaController.text,
@@ -48,6 +46,7 @@ class _DataPiketPageState extends State<DataPiketPage> {
           'tugas': _tugasController.text,
         });
         _tugasController.clear();
+        _tanggalController.clear();
       });
     }
   }
@@ -62,106 +61,122 @@ class _DataPiketPageState extends State<DataPiketPage> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Nama Anggota'),
-              SizedBox(height: 8),
-              TextField(
-                controller: _namaController,
-                readOnly: true,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Nama Anggota'),
+                SizedBox(height: 8),
+                TextFormField(
+                  controller: _namaController,
+                  readOnly: true,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                  ),
                 ),
-              ),
-              SizedBox(height: 16),
-              Text('Pilih Tanggal'),
-              SizedBox(height: 8),
-              TextField(
-                controller: _tanggalController,
-                readOnly: true,
-                onTap: () => _selectDate(context),
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.calendar_today),
-                  hintText: 'Pilih Tanggal',
+                SizedBox(height: 16),
+
+                Text('Pilih Tanggal'),
+                SizedBox(height: 8),
+                TextFormField(
+                  controller: _tanggalController,
+                  readOnly: true,
+                  onTap: () => _selectDate(context),
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(Icons.calendar_today),
+                    hintText: 'Pilih Tanggal',
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Tanggal harus diisi';
+                    }
+                    return null;
+                  },
                 ),
-              ),
-              SizedBox(height: 16),
-              Text('Tugas Piket'),
-              SizedBox(height: 8),
-              Row(
-                children: [
-                  Expanded(
-                    child: TextField(
-                      controller: _tugasController,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: 'Tugas Piket',
+                SizedBox(height: 16),
+
+                Text('Tugas Piket'),
+                SizedBox(height: 8),
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextFormField(
+                        controller: _tugasController,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: 'Tugas Piket',
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Tugas harus diisi';
+                          }
+                          return null;
+                        },
                       ),
                     ),
-                  ),
-                  SizedBox(width: 8),
-                  ElevatedButton(
-                    onPressed: _tambahData,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 50, 88, 255),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                    ),
-                       child: const Text(
-                       'Tambah',
-                      style: TextStyle(
-                       fontSize: 18,
-                       fontWeight: FontWeight.bold,
-                       color: Colors.white, 
-                     ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 24),
-              Text(
-                'Daftar Tugas Piket',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-              ),
-              SizedBox(height: 8),
-              dataPiket.isEmpty
-                  ? Center(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 50),
-                        child: Text('Belum ada Data'),
+                    SizedBox(width: 8),
+                    ElevatedButton(
+                      onPressed: _tambahData,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromARGB(255, 50, 88, 255),
+                        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                       ),
-                    )
-                  : ListView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: dataPiket.length,
-                      itemBuilder: (context, index) {
-                        final item = dataPiket[index];
-                        return Card(
-                          child: ListTile(
-                            title: Text(item['tugas'] ?? ''),
-                            subtitle: Text(
-                                '${item['nama']} - ${item['tanggal']}'),
-                            trailing: Icon(Icons.arrow_forward_ios),
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => DetailDataPiketPage(
-                                    nama: item['nama'] ?? '',
-                                    tanggal: item['tanggal'] ?? '',
-                                    tugas: item['tugas'] ?? '',
+                      child: const Text(
+                        'Tambah',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 24),
+
+                Text(
+                  'Daftar Tugas Piket',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                ),
+                SizedBox(height: 8),
+                dataPiket.isEmpty
+                    ? Center(
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 50),
+                          child: Text('Belum ada Data'),
+                        ),
+                      )
+                    : ListView.builder(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemCount: dataPiket.length,
+                        itemBuilder: (context, index) {
+                          final item = dataPiket[index];
+                          return Card(
+                            child: ListTile(
+                              title: Text(item['tugas'] ?? ''),
+                              subtitle: Text('${item['nama']} - ${item['tanggal']}'),
+                              trailing: Icon(Icons.arrow_forward_ios),
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => DetailDataPiketPage(
+                                      nama: item['nama'] ?? '',
+                                      tanggal: item['tanggal'] ?? '',
+                                      tugas: item['tugas'] ?? '',
+                                    ),
                                   ),
-                                ),
-                              );
-                            },
-                          ),
-                        );
-                      },
-                    ),
-            ],
+                                );
+                              },
+                            ),
+                          );
+                        },
+                      ),
+              ],
+            ),
           ),
         ),
       ),

@@ -31,6 +31,12 @@ class DetailPelangganPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Tentukan apakah imageUrl adalah link dari internet
+    final isNetworkImage = imageUrl.startsWith('http') && imageUrl.contains('.');
+    final imageProvider = isNetworkImage
+        ? NetworkImage(imageUrl)
+        : AssetImage('assets/images/cat.jpg') as ImageProvider;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 50, 88, 255),
@@ -42,7 +48,7 @@ class DetailPelangganPage extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 50,
-              backgroundImage: NetworkImage(imageUrl),
+              backgroundImage: imageProvider,
             ),
             SizedBox(height: 16),
             Text(
@@ -52,7 +58,6 @@ class DetailPelangganPage extends StatelessWidget {
             Text(email),
             Text(noHp),
             SizedBox(height: 24),
-
             Align(
               alignment: Alignment.centerLeft,
               child: Text('Alamat', style: TextStyle(fontWeight: FontWeight.bold)),
@@ -64,7 +69,6 @@ class DetailPelangganPage extends StatelessWidget {
               decoration: _inputDecoration(),
             ),
             SizedBox(height: 16),
-
             Row(
               children: [
                 Expanded(
@@ -99,7 +103,6 @@ class DetailPelangganPage extends StatelessWidget {
               ],
             ),
             SizedBox(height: 30),
-
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -113,15 +116,15 @@ class DetailPelangganPage extends StatelessWidget {
                   ),
                   padding: EdgeInsets.symmetric(vertical: 16),
                 ),
-                   child: const Text(
-                       'Selesai',
-                      style: TextStyle(
-                       fontSize: 18,
-                       fontWeight: FontWeight.bold,
-                       color: Colors.white, 
-                     ),
-                    ),
+                child: const Text(
+                  'Selesai',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
                   ),
+                ),
+              ),
             ),
           ],
         ),
