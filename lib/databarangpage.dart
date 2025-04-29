@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:ucp1flutter_20220140140/detaildatabarang.dart'; 
 
 class DataBarangPage extends StatefulWidget {
   const DataBarangPage({Key? key}) : super(key: key);
@@ -10,168 +11,223 @@ class DataBarangPage extends StatefulWidget {
 
 class _DataBarangPageState extends State<DataBarangPage> {
   final _formKey = GlobalKey<FormState>();
+
   DateTime? _selectedDate;
   String? _jenisTransaksi;
   String? _jenisBarang;
+
+  final TextEditingController _tanggalController = TextEditingController();
   final TextEditingController _jumlahController = TextEditingController();
   final TextEditingController _hargaController = TextEditingController();
 
-Future<void> _selectDate(BuildContext context) async {
-  final DateTime? picked = await showDatePicker(
-    context: context,
-    initialDate: DateTime.now(),
-    firstDate: DateTime(2020),
-    lastDate: DateTime(2101),
-  );
-  if (picked != null && picked != _selectedDate) {
+  final Map<String, int> hargaBarang = {
+    'Carrier': 500000,
+    'Sleeping Bag': 200000,
+    'Tenda': 750000,
+    'Sepatu': 300000,
+  };
+
+  void _submitData() {
+    if (_formKey.currentState?.validate() ?? false) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Data Berhasil Disubmit')),
+      );
+      _resetForm();
+    }
+  }
+
+  void _resetForm() {
     setState(() {
-      _selectedDate = picked;
+      _selectedDate = null;
+      _jenisTransaksi = null;
+      _jenisBarang = null;
+      _tanggalController.clear();
+      _jumlahController.clear();
+      _hargaController.clear();
     });
   }
-}
 
-void _submitData() {
+  InputDecoration _inputDecoration(String label) {
+    return InputDecoration(
+      labelText: label,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+    );
+  }
+
+  @override
+  void dispose() {
+    _tanggalController.dispose();
+    _jumlahController.dispose();
+    _hargaController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _pickDate() async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+    if (picked != null) {
+      setState(() {
+        _selectedDate = picked;
+        _tanggalController.text = DateFormat('dd/MM/yyyy').format(picked);
+      });
+    }
+  }
+
+  String _formatCurrency(int number) {
+    final formatter = NumberFormat.currency(locale: 'id_ID', symbol: 'Rp ', decimalDigits: 0);
+    return formatter.format(number);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.deepOrange,
+        title: const Text('Pendataan Barang'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context),
+        ),
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text('Tanggal Transaksi', style: TextStyle(fontWeight: FontWeight.bold)),
+              const SizedBox(height: 8),
+              GestureDetector(
+                onTap: _pickDate,
+                child: AbsorbPointer(
+                  child: TextFormField(
+                    controller: _tanggalController,
+                    decoration: _inputDecoration('Tanggal Transaksi').copyWith(
+                      prefixIcon: const Icon(Icons.calendar_today),
+                    ),
+                    validator: (value) => value == null || value.isEmpty ? 'Tanggal wajib diisi' : null,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+
+              DropdownButtonFormField<String>(
+                value: _jenisTransaksi,
+                decoration: _inputDecoration('Jenis Transaksi'),
+                items: ['Barang Masuk', 'Barang Keluar'].map((item) {
+                  return DropdownMenuItem(
+                    value: item,
+                    child: Text(item),
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  setState(() {
+                    _jenisTransaksi = value;
+                  });
+                },
+                validator: (value) => value == null || value.isEmpty ? 'Pilih jenis transaksi' : null,
+              ),
+              const SizedBox(height: 16),
+
+              DropdownButtonFormField<String>(
+                value: _jenisBarang,
+                decoration: _inputDecoration('Jenis Barang'),
+                items: hargaBarang.keys.map((item) {
+                  return DropdownMenuItem(
+                    value: item,
+                    child: Text(item),
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  setState(() {
+                    _jenisBarang = value;
+                    if (value != null) {
+                      _hargaController.text = _formatCurrency(hargaBarang[value]!);
+                    }
+                  });
+                },
+                validator: (value) => value == null || value.isEmpty ? 'Pilih jenis barang' : null,
+              ),
+              const SizedBox(height: 16),
+
+              Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text('Jumlah Barang', style: TextStyle(fontWeight: FontWeight.bold)),
+                        const SizedBox(height: 8),
+                        TextFormField(
+                          controller: _jumlahController,
+                          decoration: _inputDecoration('Jumlah Barang'),
+                          keyboardType: TextInputType.number,
+                          validator: (value) => value == null || value.isEmpty ? 'Jumlah wajib diisi' : null,
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text('Harga Satuan', style: TextStyle(fontWeight: FontWeight.bold)),
+                        const SizedBox(height: 8),
+                        TextFormField(
+                          controller: _hargaController,
+                          decoration: _inputDecoration('Harga Satuan'),
+                          enabled: false, // Tetap tidak bisa diketik manual
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 24),
+
+              ElevatedButton(
+  onPressed: () {
   if (_formKey.currentState?.validate() ?? false) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Data Berhasil Disubmit')),
+    final tanggal = _selectedDate!;
+    final jenisTransaksi = _jenisTransaksi!;
+    final jenisBarang = _jenisBarang!;
+    final jumlahBarang = int.tryParse(_jumlahController.text) ?? 0;
+    
+    // Hapus "Rp" dan titik sebelum parsing harga
+    final hargaText = _hargaController.text.replaceAll('Rp', '').replaceAll('.', '').trim();
+    final hargaSatuan = int.tryParse(hargaText) ?? 0;
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => DetailBarangPage(
+          tanggal: tanggal,
+          jenisTransaksi: jenisTransaksi,
+          jenisBarang: jenisBarang,
+          jumlahBarang: jumlahBarang,
+          hargaSatuan: hargaSatuan,
+        ),
+      ),
+    );
+  }
+},
+
+  child: Text('Submit'),
+),
+
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
-
-InputDecoration _inputDecoration(String label) {
-  return InputDecoration(
-    labelText: label,
-    border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(20),
-    ),
-    contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-  );
-}
-
-@override
-Widget build(BuildContext context) {
-  return Scaffold(
-    appBar: AppBar(
-      backgroundColor: Colors.deepOrange,
-      title: Text('Pendataan Barang'),
-      leading: IconButton(
-        icon: Icon(Icons.arrow_back),
-        onPressed: () {
-          Navigator.pop(context);
-        },
-      ),
-    ),
-
-    body: SingleChildScrollView(
-      padding: EdgeInsets.all(16),
-      child: Form(
-        key: _formKey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-
-Text('Tanggal Transaksi', style: TextStyle(fontWeight: FontWeight.bold)),
-SizedBox(height: 8),
-GestureDetector(
-  onTap: () => _selectDate(context),
-  child: AbsorbPointer(
-    child: TextFormField(
-      decoration: _inputDecoration('Tanggal Transaksi').copyWith(
-        prefixIcon: Icon(Icons.calendar_today),
-      ),
-      controller: TextEditingController(
-        text: _selectedDate == null
-            ? ''
-            : DateFormat('dd-MM-yyyy').format(_selectedDate!),
-      ),
-      validator: (value) => value == null || value.isEmpty ? 'Tanggal wajib diisi' : null,
-    ),
-  ),
-),
-
-DropdownButtonFormField<String>(
-  value: _jenisTransaksi,
-  decoration: _inputDecoration('Jenis Transaksi'),
-  items: ['Pembelian', 'Penjualan'].map((item) {
-    return DropdownMenuItem(
-      value: item,
-      child: Text(item),
-    );
-  }).toList(),
-  onChanged: (value) {
-    setState(() {
-      _jenisTransaksi = value;
-    });
-  },
-  validator: (value) => value == null || value.isEmpty ? 'Pilih jenis transaksi' : null,
-),
-
-DropdownButtonFormField<String>(
-  value: _jenisBarang,
-  decoration: _inputDecoration('Jenis Barang'),
-  items: ['Carrier', 'Sleeping Bag', 'Tenda', 'Sepatu'].map((item) {
-    return DropdownMenuItem(
-      value: item,
-      child: Text(item),
-    );
-  }).toList(),
-  onChanged: (value) {
-    setState(() {
-      _jenisBarang = value;
-    });
-  },
-  validator: (value) => value == null || value.isEmpty ? 'Pilih jenis barang' : null,
-),
-
-Row(
-  children: [
-    Expanded(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text('Jumlah Barang', style: TextStyle(fontWeight: FontWeight.bold)),
-          SizedBox(height: 8),
-          TextFormField(
-            controller: _jumlahController,
-            decoration: _inputDecoration('Jumlah Barang'),
-            keyboardType: TextInputType.number,
-            validator: (value) => value == null || value.isEmpty ? 'Jumlah wajib diisi' : null,
-          ),
-        ],
-      ),
-    ),
-    SizedBox(width: 12),
-    Expanded(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text('Harga Satuan', style: TextStyle(fontWeight: FontWeight.bold)),
-          SizedBox(height: 8),
-          TextFormField(
-            controller: _hargaController,
-            decoration: _inputDecoration('Harga Satuan').copyWith(
-              prefixText: 'Rp. ',
-            ),
-            keyboardType: TextInputType.number,
-            validator: (value) => value == null || value.isEmpty ? 'Harga wajib diisi' : null,
-          ),
-        ],
-      ),
-    ),
-  ],
-),
-
-SizedBox(
-  width: double.infinity,
-  child: ElevatedButton(
-    onPressed: _submitData,
-    style: ElevatedButton.styleFrom(
-      backgroundColor: Colors.deepOrange,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-      ),
-      padding: EdgeInsets.symmetric(vertical: 16),
-    ),
-    child: Text('Submit', style: TextStyle(fontSize: 16)),
-  ),
-),
