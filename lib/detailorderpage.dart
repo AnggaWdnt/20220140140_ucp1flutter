@@ -7,6 +7,7 @@ class DetailOrderPage extends StatelessWidget {
   final String jumlahMakanan;
   final String jumlahMinuman;
   final int totalHarga;
+
   const DetailOrderPage({
     super.key,
     required this.makanan,
@@ -28,17 +29,20 @@ class DetailOrderPage extends StatelessWidget {
             Text('Nama Anggota: $makanan'),
             Text('Tanggal Piket: $minuman'),
             Text('Tugas Piket: $jumlahMakanan'),
-
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (context) => HomePage()),
-                  (route) => false, 
+                  MaterialPageRoute(
+                    builder: (context) => HomePage(
+                      namaLengkap: 'User', 
+                    ),
+                  ),
+                  (route) => false,
                 );
-              }, 
-              child: Text('selesai')
+              },
+              child: Text('Selesai'),
             ),
           ],
         ),

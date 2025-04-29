@@ -13,12 +13,12 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   bool _obscureText = true;
+  final _formKey = GlobalKey<FormState>(); // Dipindah ke atas agar tidak rebuild terus
 
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
     return Scaffold(
-      backgroundColor: Color(0xFFFEF9F7), // warna background sedikit pink muda
+      backgroundColor: Color(0xFFFEF9F7),
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -27,14 +27,12 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               children: [
                 const SizedBox(height: 80),
-                // Logo di atas
                 Icon(
-                  Icons.change_history, // icon segitiga (bisa diganti custom)
+                  Icons.change_history,
                   size: 100,
                   color: Colors.black,
                 ),
                 const SizedBox(height: 20),
-                // Text Selamat Datang
                 Text(
                   'SELAMAT DATANG KEMBALI',
                   style: TextStyle(
@@ -44,7 +42,6 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 const SizedBox(height: 40),
-                // Email Field
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -67,7 +64,6 @@ class _LoginPageState extends State<LoginPage> {
                     contentPadding: EdgeInsets.symmetric(vertical: 20),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(color: Colors.grey),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
@@ -82,7 +78,6 @@ class _LoginPageState extends State<LoginPage> {
                   },
                 ),
                 const SizedBox(height: 20),
-                // Password Field
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -117,7 +112,6 @@ class _LoginPageState extends State<LoginPage> {
                     contentPadding: EdgeInsets.symmetric(vertical: 20),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(color: Colors.grey),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
@@ -132,7 +126,6 @@ class _LoginPageState extends State<LoginPage> {
                   },
                 ),
                 const SizedBox(height: 40),
-                // Tombol Login
                 SizedBox(
                   width: double.infinity,
                   height: 55,
@@ -147,7 +140,11 @@ class _LoginPageState extends State<LoginPage> {
                       if (_formKey.currentState!.validate()) {
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (context) => const HomePage()),
+                          MaterialPageRoute(
+                            builder: (context) => HomePage(
+                              namaLengkap: "User", // <-- Disini kasih nama default
+                            ),
+                          ),
                         );
                       }
                     },
@@ -158,7 +155,6 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                // Daftar link
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

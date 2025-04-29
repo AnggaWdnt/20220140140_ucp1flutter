@@ -4,7 +4,9 @@ import 'package:ucp1flutter_20220140140/datapelangganpage.dart';
 import 'package:ucp1flutter_20220140140/databarangpage.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final String namaLengkap;
+
+  const HomePage({super.key, required this.namaLengkap}); 
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -40,7 +42,7 @@ class _HomePageState extends State<HomePage> {
                         style: TextStyle(color: Colors.white, fontSize: 16),
                       ),
                       Text(
-                        'Admin',
+                        widget.namaLengkap, 
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,
@@ -51,7 +53,6 @@ class _HomePageState extends State<HomePage> {
                   Spacer(),
                   IconButton(
                     onPressed: () {
-                      // Fungsi logout bisa ditambahkan di sini
                     },
                     icon: Icon(Icons.logout, color: Colors.white),
                   ),
@@ -157,7 +158,7 @@ class _HomePageState extends State<HomePage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => DataBarangPage()), 
+                            builder: (context) => DataBarangPage()),
                       );
                     },
                     child: Container(
