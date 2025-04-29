@@ -21,6 +21,8 @@
 ![image](https://github.com/user-attachments/assets/27c4680a-5bd2-4ec2-befa-33dacd95b1fd)
 ![image](https://github.com/user-attachments/assets/00d2eff8-a350-47ac-be67-4bd683f48442)
 ![image](https://github.com/user-attachments/assets/b533a822-8ae6-4626-86df-abad4695d0c7)
+video running apk
+https://drive.google.com/drive/folders/1iluLSG8_XCPT127Izi0ENwMhh--7CYXO?usp=sharing
 
 
 
