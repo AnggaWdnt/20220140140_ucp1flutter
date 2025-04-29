@@ -2,18 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:ucp1flutter_20220140140/detaildatapiketpage.dart';
 
 class DataPiketPage extends StatefulWidget {
-  const DataPiketPage({super.key});
+  final String namaLengkap;
+
+  const DataPiketPage({super.key, required this.namaLengkap});
 
   @override
-  State<DataPiketPage> createState() => _OrderPageState();
+  State<DataPiketPage> createState() => _DataPiketPageState();
 }
 
-class _OrderPageState extends State<DataPiketPage> {
-  final TextEditingController _namaController =
-      TextEditingController(text: "Admin");
+class _DataPiketPageState extends State<DataPiketPage> {
+  late TextEditingController _namaController;
   final TextEditingController _tanggalController = TextEditingController();
   final TextEditingController _tugasController = TextEditingController();
   List<Map<String, String>> dataPiket = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _namaController = TextEditingController(text: widget.namaLengkap);
+  }
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
