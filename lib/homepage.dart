@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ucp1flutter_20220140140/datapiketpage.dart';
 import 'package:ucp1flutter_20220140140/datapelangganpage.dart';
+import 'package:ucp1flutter_20220140140/databarangpage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -50,6 +51,7 @@ class _HomePageState extends State<HomePage> {
                   Spacer(),
                   IconButton(
                     onPressed: () {
+                      // Fungsi logout bisa ditambahkan di sini
                     },
                     icon: Icon(Icons.logout, color: Colors.white),
                   ),
@@ -152,6 +154,11 @@ class _HomePageState extends State<HomePage> {
 
                   GestureDetector(
                     onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => DataBarangPage()), 
+                      );
                     },
                     child: Container(
                       width: double.infinity,
