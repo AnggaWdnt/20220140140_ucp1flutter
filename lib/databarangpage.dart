@@ -202,7 +202,6 @@ class _DataBarangPageState extends State<DataBarangPage> {
     final jenisBarang = _jenisBarang!;
     final jumlahBarang = int.tryParse(_jumlahController.text) ?? 0;
     
-    // Hapus "Rp" dan titik sebelum parsing harga
     final hargaText = _hargaController.text.replaceAll('Rp', '').replaceAll('.', '').trim();
     final hargaSatuan = int.tryParse(hargaText) ?? 0;
 

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:ucp1flutter_20220140140/datapiketpage.dart';
 import 'package:ucp1flutter_20220140140/datapelangganpage.dart';
@@ -6,12 +8,18 @@ import 'package:ucp1flutter_20220140140/loginpage.dart';
 
 class HomePage extends StatefulWidget {
   final String namaLengkap;
+  final String email;
 
-  const HomePage({super.key, required this.namaLengkap});
+  const HomePage({
+    super.key,
+    required this.namaLengkap,
+    required this.email,
+  });
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
+
 
 class _HomePageState extends State<HomePage> {
   @override
@@ -75,13 +83,11 @@ class _HomePageState extends State<HomePage> {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
-                  color: Colors.red[100],
                 ),
                 child: Column(
                   children: [
                     Image.asset(
-                      'assets/banneriklan.jpg',
-                      fit: BoxFit.cover,
+                      'assets/images/banneriklan.jpg',
                     ),
                     SizedBox(height: 8),
                   ],
