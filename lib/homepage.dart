@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:ucp1flutter_20220140140/datapiketpage.dart';
 import 'package:ucp1flutter_20220140140/datapelangganpage.dart';
 import 'package:ucp1flutter_20220140140/databarangpage.dart';
+import 'package:ucp1flutter_20220140140/loginpage.dart';
 
 class HomePage extends StatefulWidget {
   final String namaLengkap;
 
-  const HomePage({super.key, required this.namaLengkap}); 
+  const HomePage({super.key, required this.namaLengkap});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -20,6 +21,17 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
         title: Text('Home Page'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.logout),
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const LoginPage()),
+              );
+            },
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -42,19 +54,14 @@ class _HomePageState extends State<HomePage> {
                         style: TextStyle(color: Colors.white, fontSize: 16),
                       ),
                       Text(
-                        widget.namaLengkap, 
+                        widget.namaLengkap,
                         style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ],
-                  ),
-                  Spacer(),
-                  IconButton(
-                    onPressed: () {
-                    },
-                    icon: Icon(Icons.logout, color: Colors.white),
                   ),
                 ],
               ),
@@ -96,7 +103,9 @@ class _HomePageState extends State<HomePage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => DataPiketPage()),
+                                builder: (context) =>
+                                    DataPiketPage(namaLengkap: widget.namaLengkap),
+                              ),
                             );
                           },
                           child: Container(
@@ -110,15 +119,15 @@ class _HomePageState extends State<HomePage> {
                               children: [
                                 Icon(Icons.task, size: 40, color: Colors.white),
                                 SizedBox(height: 8),
-                                Text('Data Piket',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 16)),
+                                Text(
+                                  'Data Piket',
+                                  style: TextStyle(color: Colors.white, fontSize: 16),
+                                ),
                               ],
                             ),
                           ),
                         ),
                       ),
-
                       Expanded(
                         child: GestureDetector(
                           onTap: () {
@@ -137,12 +146,12 @@ class _HomePageState extends State<HomePage> {
                             ),
                             child: Column(
                               children: [
-                                Icon(Icons.group_add,
-                                    size: 40, color: Colors.white),
+                                Icon(Icons.group_add, size: 40, color: Colors.white),
                                 SizedBox(height: 8),
-                                Text('Data Pelanggan',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 16)),
+                                Text(
+                                  'Data Pelanggan',
+                                  style: TextStyle(color: Colors.white, fontSize: 16),
+                                ),
                               ],
                             ),
                           ),
@@ -170,12 +179,12 @@ class _HomePageState extends State<HomePage> {
                       ),
                       child: Column(
                         children: [
-                          Icon(Icons.receipt_long,
-                              size: 40, color: Colors.white),
+                          Icon(Icons.receipt_long, size: 40, color: Colors.white),
                           SizedBox(height: 8),
-                          Text('Barang Masuk/Keluar',
-                              style: TextStyle(
-                                  color: Colors.white, fontSize: 16)),
+                          Text(
+                            'Barang Masuk/Keluar',
+                            style: TextStyle(color: Colors.white, fontSize: 16),
+                          ),
                         ],
                       ),
                     ),
